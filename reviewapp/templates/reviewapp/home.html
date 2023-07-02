@@ -1,5 +1,4 @@
 {% extends 'reviewapp/base.html' %}
-
 {% block content %}
 
 <!--<div id="category-banner" class="text-center">-->
@@ -14,7 +13,7 @@
 <!--        <span><i class="fas fa-chevron-circle-down"></i></span>-->
 <!--    </div>-->
 <!--</div>-->
-<div id="category-banner" class="text-center">
+<div id="category-banner" class="text-center" xmlns="http://www.w3.org/1999/html">
     <div class="select-wrapper">
         <input type="text" id="user-input" placeholder="Enter Your Query">
         <button id="category-btn">Search</button>
@@ -23,20 +22,22 @@
 </div>
 <!--<div id="result"></div>-->
 <!--ERROR-->
-<div id="none-found">
-    <div class="alert alert-primary" role="alert">
-        No tours found.
-    </div>
-</div>
+<!--<div id="none-found">-->
+<!--    <div class="alert alert-primary" role="alert">-->
+<!--        No tours found.-->
+<!--    </div>-->
+<!--</div>-->
 
 <!--RESTAURANTS LIST-->
 <div id="restaurants-list-wrapper">
     <div id="restaurants-list">
+
     </div>
 </div>
 
-<!--SAMPLE RESTAURANT-->    
-<div id="newRestaurant" class="card restaurant-card shadow mb-4" style="display:none;">
+
+<!--SAMPLE RESTAURANT-->
+<div id="newRestaurant" class="card restaurant-card shadow mb-4" style="display:none;" >
     <a href="#">
         <div class="restaurant-image">
             <img class="card-img-top" src="/static/reviewapp/images/1.jpg" width="100%">
@@ -50,14 +51,13 @@
     </a>
 </div>
 
-
 <!--CSS & JS-->
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'reviewapp/style/home.css' %}" />
 {% load static %}
-<script src="{% static "reviewapp/js/home.js" %}"></script>
+<script src="{% static 'reviewapp/js/home.js' %}"> </script>
 
-<!--<script>-->
-<!--    getRestaurants(0);-->
-<!--</script>-->
+<script>
+    getRestaurants(0);
+</script>
 {% endblock %}

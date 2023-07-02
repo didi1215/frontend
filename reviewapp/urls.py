@@ -9,7 +9,7 @@ urlpatterns = [
     path('', views.home, name='home'),
 
     # ex: /reviewapp/resto/5
-    path('resto/<int:tour_id>/', views.details, name='details'),
+    path('resto/<int:card_id>/details/', views.details, name='details'),
 
     # ex: /reviewapp/resto/5/add
     path('resto/<int:restaurant_id>/add/', views.add, name='add'),

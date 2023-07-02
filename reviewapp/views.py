@@ -4,7 +4,7 @@ import requests
 
 from .models import *
 from .forms import *
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
 from django.views import generic
 from django.contrib.auth.decorators import login_required
@@ -16,9 +16,10 @@ from rest_framework.response import Response
 def home(request):
     categories = Category.objects.all()
     return render(request, 'reviewapp/home.html', context={'categories': categories})
+    # return render(request, 'reviewapp/home.html')
 
 
-def details(request):
+def details(request, card_id):
     # restaurant = Restaurant.objects.filter(pk=restaurant_id).first()
     # user_liked_reviews = []
     # if request.user.is_authenticated:
@@ -28,21 +29,49 @@ def details(request):
     #     'user': request.user,
     #     'user_liked_reviews': user_liked_reviews
     # }
-    response_data = request.POST.get('response', None)
+    # card_id = request.GET.get('card_id')
+    # card_id = request.GET.get('card_id')
+    api_url = f"http://127.0.0.1:8000/recommend-tours/"
+    payload = {
+        'sentence': 'Munich',
+        "location": "Munich",
+        'n': 3
+    }
+    response_data = requests.post(api_url, json=payload)
+    # print(response_data.content)
+    data = json.loads(response_data.content)
+    # print(data['recommended_tours'])
+    # print('\n')
+    tour_data = data['recommended_tours'][card_id]
+    # print(tour_data)
 
-    if response_data:
-        # 解码 JSON 数据
-        data = json.loads(response_data)
-        tour_data = data
+    # context = {
+    #         'tour_id': tour_id,
+    #     }
+    # if response_data:
+    #     # 解码 JSON 数据
+    #     data = json.loads(response_data)
+    #     tour_data = data[1]
+    #     context = {
+    #         'tour_id': tour_id,
+    #     }
     # 根据 tour_id 查找对应的数据
     # tour_data = None
-    # for tour in data['recommended_tours']:
-    #     if tour['tour_id'] == tour_id:
-    #         tour_data = tour
-    #         break
+    # tour_id = None
+    # for tid in tour_data['tour_id']:
+    #     tour_id = tid
+    #     break
     # 将数据传递给新页面进行展示
-    return render(request, 'details.html', {'tour_data': tour_data})
-    # return render(request, 'reviewapp/details.html', context)
+    # card_id = 0
+    # context = {
+    #     'tour_id': tour_id
+    # }
+    # tour_data[card_id] = 0
+    print(type(tour_data))
+    # print(url)
+    # return render(request, url, tour_data)
+    # return render(request, 'reviewapp/details.html', tour_data)
+    return render(request, 'reviewapp/details.html', tour_data)
 
 
 def get_liked_reviews_by_user_and_restaurant(user, restaurant):
@@ -59,11 +88,11 @@ def add(request, restaurant_id):
     form = ReviewForm()
     restaurant = get_object_or_404(Restaurant, pk=restaurant_id)
     context = {
-        'restaurant': restaurant, 
+        'restaurant': restaurant,
         'form': form
     }
     return render(request, 'reviewapp/add.html', context)
-    
+
 
 @login_required
 def reply(request, comment_id):
@@ -93,7 +122,8 @@ def reviewed(request, restaurant_id):
 def comment_add(request, review_id):
     review = get_object_or_404(Review, pk=review_id)
     if review:
-        review.comment_set.create(comment_user=request.user, comment_description=request.POST.get('comment_description'))
+        review.comment_set.create(comment_user=request.user,
+                                  comment_description=request.POST.get('comment_description'))
     else:
         print("Invalid fields for comment. Required: review id, username and comment description.")
 
@@ -116,7 +146,8 @@ class CommentAdd(APIView):
             if review_id and comment_user_id and comment_description:
                 review = get_object_or_404(Review, pk=review_id)
                 comment_user = get_object_or_404(User, pk=comment_user_id)
-                new_comment = review.comment_set.create(comment_user=comment_user, comment_description=comment_description)
+                new_comment = review.comment_set.create(comment_user=comment_user,
+                                                        comment_description=comment_description)
                 success = True
                 new_comment_pk = new_comment.pk
         except Exception as e:
@@ -170,7 +201,7 @@ class LikeAdd(APIView):
         try:
             review_id = int(request.POST.get('review_id', None))
             user_id = int(request.POST.get('user_id', None))
-        
+
             if review_id and user_id:
                 review = get_object_or_404(Review, pk=review_id)
                 print('got review!')
@@ -191,9 +222,9 @@ class LikeAdd(APIView):
             print(e, "Review id and user_id need to be integers.")
 
         data = {
-                'success': success,
-                'total_likes': total_likes
-            }
+            'success': success,
+            'total_likes': total_likes
+        }
         return Response(data)
 
 
@@ -208,7 +239,7 @@ class GetRestaurantsByCategory(APIView):
 
         try:
             category_id = request.GET.get('category_id', None)
-        
+
             if category_id:
                 # 0 = All categories
                 if category_id == "0":
@@ -223,7 +254,7 @@ class GetRestaurantsByCategory(APIView):
                     r['rating'] = restaurant.rating()
                     r['pricing'] = restaurant.pricing()
                     r['category'] = restaurant.category.category_text
-                
+
                 restaurants.sort(key=lambda x: int(x['rating']), reverse=False)
 
         except Exception as e:

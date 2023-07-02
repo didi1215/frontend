@@ -19,23 +19,24 @@ $(document).ready(function() {
     $("#category-btn").click(function() {
         getRestaurants();
     });
-    function createTourCard(tour) {
-      var card = $("<div>").addClass("card");
-      var tourTitle = $("<div>").addClass("tour-title").text(tour.tour_title);
-      // var tourDuration = $("<div>").addClass("tour-duration").text("Duration: " + tour.tour_duration + " minutes");
-      // 添加其他旅行信息的显示元素
-
-      card.append(tourTitle, tourDuration, /* 其他旅行信息的显示元素 */);
-      return card;
-    }
+    // function createTourCard(tour) {
+    //   var card = $("<div>").addClass("card");
+    //   var tourTitle = $("<div>").addClass("tour-title").text(tour.tour_title);
+    //   // var tourDuration = $("<div>").addClass("tour-duration").text("Duration: " + tour.tour_duration + " minutes");
+    //   // 添加其他旅行信息的显示元素
+    //
+    //   card.append(tourTitle, tourDuration, /* 其他旅行信息的显示元素 */);
+    //   return card;
+    // }
 
     function getRestaurants() {
         var userInput = $("#user-input").val();
 
         // 构建请求数据对象
         var payload = {
-            sentence: "Käsealpe abwärts",
-            n: 2
+            sentence: "Munich",
+            location: "Munich",
+            n: 3
         };
 
         // 发送 POST 请求到 API
@@ -52,7 +53,8 @@ $(document).ready(function() {
                 // 获取用户查询和推荐旅行的列表
                 var userQuery = responseData.user_query;
                 var recommendedTours = responseData.recommended_tours;
-                window.location.href = "/details/?response=" + encodeURIComponent(JSON.stringify(response));
+                // window.location.href = "/details"
+                // window.location.href = "/details/?response=" + encodeURIComponent(JSON.stringify(response));
 
 
                 // 在控制台打印结果，以便调试
@@ -66,10 +68,10 @@ $(document).ready(function() {
                     for (var i = 0; i < recommendedTours.length; i++) {
                         var restaurant = recommendedTours[i];
                         var card = $("#newRestaurant").clone();
-
+                        // var card_id = i;
                         // var card = createTourCard(restaurant);
                         // $("#newRestaurant").append(card);
-
+                        card.attr("card_id", i);
                         // card.removeAttr("id");
                         // card.find(".restaurant-text").text(restaurant.name);
                         // card.find(".rating").text(restaurant.rating);
@@ -81,12 +83,24 @@ $(document).ready(function() {
                         // card.find(".tour-id").text(restaurant.name);
                         // card.find(".tour-id").text(restaurant.rating);
                         card.find(".restaurant-text").text(restaurant.tour_title);
-                        card.find(".rating").text(restaurant.tour_duration);
+                        // card.find(".rating").text(restaurant.tour_duration);
                         // card.find("img").attr("src", restaurant.reviews);
-                        card.find(".pricing").text(restaurant.tour_id);
+                        // card.find(".pricing").text(restaurant.tour_id);
+                        // JavaScript code to handle card click event
+                        // $("#restaurants-list a").on("click", function(e) {
+                        //     e.preventDefault();
+                        //     var cardId = $(this).data("card-id");
+                        //     var url = "/reviewapp/resto/" + cardId + "/details/";
+                        //     window.location.href = url;
+                        // });
 
+                        card.on("click", function() {
+                        // Get the tour_id of the clicked card
+                        var tourId = $(this).attr("card_id");
 
-
+                        // Redirect to the details page with the corresponding tour_id
+                        window.location.href = "/reviewapp/resto/" + tourId + "/details/";
+                        });
                         $("#restaurants-list").append(card);
                         card.show();
                     }
