@@ -61,16 +61,15 @@ def details(request, card_id):
     # for tid in tour_data['tour_id']:
     #     tour_id = tid
     #     break
-    # 将数据传递给新页面进行展示
-    # card_id = 0
-    # context = {
-    #     'tour_id': tour_id
-    # }
-    # tour_data[card_id] = 0
-    print(type(tour_data))
+
+    # print(type(tour_data))
     # print(url)
     # return render(request, url, tour_data)
     # return render(request, 'reviewapp/details.html', tour_data)
+    # context = {
+    #     "tour_data_json": json.dumps(tour_data)
+    # }
+    # print(context)
     return render(request, 'reviewapp/details.html', tour_data)
 
 

@@ -1,13 +1,12 @@
 {% extends 'reviewapp/base.html' %}
 
-
-
-<title>Tour Details: {{tour_title}}</title>
+{% block content %}
+<title>Tour Details: {{ tour_title }}</title>
 
 
 <p>
   <!-- your content here... -->
-  tour_duration: {{tour_duration}}
+  tour_duration: {{tour_data_json.tour_duration}}
   tour_length:{{tour_length}}
   tour_rating_condition:{{tour_rating_condition}}
   tour_rating_difficulty:{{tour_rating_difficulty}}
@@ -19,64 +18,6 @@
   tour_long_text:{{tour_long_text}}
   tour_url:{{tour_url}}
 </p>
-
-<!--  <script src="js/scripts.js"></script>-->
-
+{% endblock content %}
 
 
-
-
-<!--<div id="outer" style="width:100%; min-height: 100vh; background:url('/static/reviewapp/images/1.jpg') no-repeat fixed center; background-size: cover;">-->
-
-<!--    <div class="content-container container">-->
-
-<!--        &lt;!&ndash;RESTAURANT SUMMARY&ndash;&gt;-->
-<!--        <div class="row">-->
-
-<!--            <div id="restaurant-summary" class="col card border-0 shadow mb-4">-->
-<!--                <div class="card-body">-->
-
-<!--                    &lt;!&ndash; Back button &ndash;&gt;-->
-<!--                    <a href="{% url 'reviewapp:home'%}" class="back-button">-->
-<!--                        <i class="fas fa-arrow-circle-left"></i>-->
-<!--                    </a>-->
-
-<!--                    &lt;!&ndash; Title &ndash;&gt;-->
-<!--                    <h1>{{tour_title}}</h1>-->
-
-<!--                    &lt;!&ndash; Location &ndash;&gt;-->
-<!--                    <label class="review-liner">-->
-<!--                        <span style="font-size: 1.5em;">-->
-<!--                            <i class="fas fa-map-marker-alt" style="color:cornflowerblue;" ></i>-->
-<!--                        </span>-->
-<!--                        <strong>{{ tour_starting_point_lon }}</strong>-->
-<!--                        <strong>{{ tour_starting_point_lat }}</strong>-->
-<!--                    </label>-->
-
-<!--&lt;!&ndash;                    short description&ndash;&gt;-->
-<!--                    <label class="review-liner">-->
-<!--                        <p><span class="badge badge-pill badge-primary category"><strong>{{ tour_short_text }}</strong></span></p>-->
-<!--                    </label>-->
-<!--&lt;!&ndash;                    tour url&ndash;&gt;-->
-<!--                    <label class="review-liner">-->
-<!--                        <p><span class="badge badge-pill badge-primary category"><strong>{{ tour_url }}</strong></span></p>-->
-<!--                    </label>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-
-<!--SAMPLE COMMENT REPLY LIKE-->
-<!--{% include 'reviewapp/components_restaurant_details.html' %}-->
-
-<!--CSS & JS-->
-{% load static %}
-<!--<link rel="stylesheet" type="text/css" href="{% static 'reviewapp/style/restaurantdetails.css' %}" />-->
-<!--{% load static %}-->
-<!--<script src="{% static "reviewapp/js/restaurant.comment.reply.like.js" %}"></script>-->
-
-<script>
-    var user_id = "{{ user.id }}";
-    var user_username = "{{ user.username }}";
-</script>
