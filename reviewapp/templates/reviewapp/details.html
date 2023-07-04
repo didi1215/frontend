@@ -1,23 +1,127 @@
 {% extends 'reviewapp/base.html' %}
 
 {% block content %}
-<title>Tour Details: {{ tour_title }}</title>
+<!--<title>Tour Details: {{ tour_title }}</title>-->
+
+<head>
+    <title>Travel Website</title>
+    <style>
+        /* CSS样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f1f1f1;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .tour {
+            margin-bottom: 40px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .tour img {
+            max-width: 300px;
+            height: auto;
+            margin-right: 20px;
+        }
+
+        .tour-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tour h2 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .tour p {
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .tour-info {
+            font-size: 14px;
+            color: #888;
+        }
+
+        .tour-info p {
+            margin-bottom: 5px;
+        }
+
+        .tour-info a {
+            color: #007bff;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1 style="text-align: center;">Travel Information</h1>
+        <div id="map"></div>
+        <div class="tour">
+            <img src="/static/reviewapp/images/1.jpg" alt="Photo 1">
+            <div class="tour-content">
+                <h2>{{ tour_title }}</h2>
+<!--                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor semper leo, in cursus massa varius et.</p>-->
+                <div class="tour-info">
+                    <p><strong>Duration:</strong> {{tour_duration}}</p>
+                    <p><strong>Length:</strong> {{tour_length}}</p>
+                    <p><strong>Rating Condition:</strong> {{tour_rating_condition}}</p>
+                    <p><strong>Rating Difficulty:</strong> {{tour_rating_difficulty}}</p>
+                    <p><strong>Rating Landscape:</strong> {{tour_rating_landscape}}</p>
+                    <p><strong>Top Label:</strong> {{tour_label_top}}</p>
+                    <p><strong>Starting Point:</strong> {{tour_starting_point_lon}} {{tour_starting_point_lat}}</p>
+                    <p><strong>Short Text:</strong> {{tour_short_text}}</p>
+                    <p><strong>Long Text:</strong> {{tour_long_text}}</p>
+                    <p><strong>More Information:</strong> <a href= {{ tour_url }}>{{ tour_url }}</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript代码
+        console.log('Hello, World!');
+    </script>
+</body>
 
 
-<p>
+
+<!--<div>-->
   <!-- your content here... -->
-  tour_duration: {{tour_data_json.tour_duration}}
-  tour_length:{{tour_length}}
-  tour_rating_condition:{{tour_rating_condition}}
-  tour_rating_difficulty:{{tour_rating_difficulty}}
-  tour_rating_landscape:{{tour_rating_landscape}}
-  tour_label_top:{{tour_label_top}}
-  tour_starting_point_lon:{{tour_starting_point_lon}}}
-  tour_starting_point_lat:{{tour_starting_point_lat}}
-  tour_short_text: {{tour_short_text}}
-  tour_long_text:{{tour_long_text}}
-  tour_url:{{tour_url}}
-</p>
+<!--  tour_duration: {{tour_duration}}-->
+<!--  tour_length:{{tour_length}}-->
+<!--  tour_rating_condition:{{tour_rating_condition}}-->
+<!--  tour_rating_difficulty:{{tour_rating_difficulty}}-->
+<!--  tour_rating_landscape:{{tour_rating_landscape}}-->
+<!--  tour_label_top:{{tour_label_top}}-->
+<!--  tour_starting_point_lon:{{tour_starting_point_lon}}}-->
+<!--  tour_starting_point_lat:{{tour_starting_point_lat}}-->
+<!--  tour_short_text: {{tour_short_text}}-->
+<!--  tour_long_text:{{tour_long_text}}-->
+<!--  <li><a href= {{ tour_url }}>tour_url: {{tour_url}}</a></li>-->
+<!--</div>-->
+
 {% endblock content %}
 
 

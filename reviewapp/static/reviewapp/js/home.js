@@ -15,28 +15,22 @@
 //         }
 //     });
 // }
+let tinydata = null;
 $(document).ready(function() {
     $("#category-btn").click(function() {
+        console.log('test1')
         getRestaurants();
     });
-    // function createTourCard(tour) {
-    //   var card = $("<div>").addClass("card");
-    //   var tourTitle = $("<div>").addClass("tour-title").text(tour.tour_title);
-    //   // var tourDuration = $("<div>").addClass("tour-duration").text("Duration: " + tour.tour_duration + " minutes");
-    //   // 添加其他旅行信息的显示元素
-    //
-    //   card.append(tourTitle, tourDuration, /* 其他旅行信息的显示元素 */);
-    //   return card;
-    // }
-
+    console.log('test2')
     function getRestaurants() {
+        console.log('test3')
         var userInput = $("#user-input").val();
-
+        console.log(userInput);
         // 构建请求数据对象
         var payload = {
-            sentence: "Munich",
+            sentence: userInput,
             location: "Munich",
-            n: 3
+            n: 50
         };
 
         // 发送 POST 请求到 API
@@ -50,16 +44,17 @@ $(document).ready(function() {
                 $("#restaurants-list").empty();
                 // var responseData = JSON.parse(response);
                 var responseData = response;
+                console.log(response)
                 // 获取用户查询和推荐旅行的列表
                 var userQuery = responseData.user_query;
                 var recommendedTours = responseData.recommended_tours;
                 // window.location.href = "/details"
                 // window.location.href = "/details/?response=" + encodeURIComponent(JSON.stringify(response));
-
-
+                tinydata = recommendedTours
                 // 在控制台打印结果，以便调试
                 console.log(userQuery);
                 console.log(recommendedTours);
+
                 // var resultElement = $("#result");
                 // resultElement.html("<p>User Query: " + userQuery + "</p>");
 
@@ -67,7 +62,10 @@ $(document).ready(function() {
                     // 循环添加餐厅卡片
                     for (var i = 0; i < recommendedTours.length; i++) {
                         var restaurant = recommendedTours[i];
+                        console.log(i)
+
                         var card = $("#newRestaurant").clone();
+                        console.log(card)
                         // var card_id = i;
                         // var card = createTourCard(restaurant);
                         // $("#newRestaurant").append(card);
@@ -93,20 +91,33 @@ $(document).ready(function() {
                         //     var url = "/reviewapp/resto/" + cardId + "/details/";
                         //     window.location.href = url;
                         // });
-
+                        $("#restaurants-list").append(card);
+                        card.show();
                         card.on("click", function() {
                         // Get the tour_id of the clicked card
                         var tourId = $(this).attr("card_id");
+                        $.ajax({
+                            url: "http://127.0.0.1:8001/reviewapp/resto/"+ tourId +"/details/",
+                            type: "POST",
+                            data: JSON.stringify(tinydata),
+                            contentType: "application/json",
+                            success: function (tinyresponse) {
+                                // var responseData = JSON.parse(response);
+                                var tinyresponseData = tinyresponse;
+                                // 获取用户查询和推荐旅行的列表
+                                document.write(tinyresponseData);
+                                console.log(tinyresponseData);
+                            },
 
+                        // window.location.href = "/reviewapp/resto/details/"
                         // Redirect to the details page with the corresponding tour_id
-                        window.location.href = "/reviewapp/resto/" + tourId + "/details/";
+
+
+                        // window.location.href = "/reviewapp/resto/" + tourId + "/details/" + '?userInput=' + userInput;
                         });
-                        $("#restaurants-list").append(card);
-                        card.show();
-                    }
-                } else {
-                    // 显示错误提示
-                    $("#none-found").show();
+
+                    })
+                }
                 }
             },
             error: function(error) {

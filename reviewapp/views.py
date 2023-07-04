@@ -1,6 +1,7 @@
 import json
 
 import requests
+from django.views.decorators.csrf import csrf_exempt
 
 from .models import *
 from .forms import *
@@ -11,69 +12,44 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from rest_framework.views import APIView
 from rest_framework.response import Response
-
-
+data = None
+@csrf_exempt
 def home(request):
-    categories = Category.objects.all()
-    return render(request, 'reviewapp/home.html', context={'categories': categories})
-    # return render(request, 'reviewapp/home.html')
+    # categories = Category.objects.all()
+    # return render(request, 'reviewapp/home.html', context=context)
+    # return render(request, 'reviewapp/home.html', context={'categories': categories})
+    return render(request, 'reviewapp/home.html')
 
 
+
+@csrf_exempt
 def details(request, card_id):
-    # restaurant = Restaurant.objects.filter(pk=restaurant_id).first()
-    # user_liked_reviews = []
-    # if request.user.is_authenticated:
-    #     user_liked_reviews = get_liked_reviews_by_user_and_restaurant(request.user, restaurant)
-    # context = {
-    #     'restaurant': restaurant,
-    #     'user': request.user,
-    #     'user_liked_reviews': user_liked_reviews
+    print(card_id)
+    # print(request.body.decode('utf-8'))
+    tour_data = request.body.decode('utf-8')
+    tour_data = json.loads(tour_data)
+    want_data = tour_data[card_id]
+    print(want_data)
+
+    # api_url = f"http://127.0.0.1:8000/recommend-tours/"
+    # payload = {
+    #     'sentence': user_input,
+    #     "location": "Munich",
+    #     'n': 50
     # }
-    # card_id = request.GET.get('card_id')
-    # card_id = request.GET.get('card_id')
-    api_url = f"http://127.0.0.1:8000/recommend-tours/"
-    payload = {
-        'sentence': 'Munich',
-        "location": "Munich",
-        'n': 3
-    }
-    response_data = requests.post(api_url, json=payload)
-    # print(response_data.content)
-    data = json.loads(response_data.content)
-    # print(data['recommended_tours'])
-    # print('\n')
-    tour_data = data['recommended_tours'][card_id]
-    # print(tour_data)
+    # response_data = requests.post(api_url, json=payload)
+    # data = json.loads(response_data.content)
+    # print(data)
+    # tour_data = data['recommended_tours'][card_id]
 
-    # context = {
-    #         'tour_id': tour_id,
-    #     }
-    # if response_data:
-    #     # 解码 JSON 数据
-    #     data = json.loads(response_data)
-    #     tour_data = data[1]
-    #     context = {
-    #         'tour_id': tour_id,
-    #     }
-    # 根据 tour_id 查找对应的数据
-    # tour_data = None
-    # tour_id = None
-    # for tid in tour_data['tour_id']:
-    #     tour_id = tid
-    #     break
+    a = render(request, 'reviewapp/details.html', want_data)
+    print(a)
+    return a
+    # return render(request, 'reviewapp/details.html', context = want_data)
+# def details(request):
+#     return render(request, 'reviewapp/details.html')
 
-    # print(type(tour_data))
-    # print(url)
-    # return render(request, url, tour_data)
-    # return render(request, 'reviewapp/details.html', tour_data)
-    # context = {
-    #     "tour_data_json": json.dumps(tour_data)
-    # }
-    # print(context)
-    return render(request, 'reviewapp/details.html', tour_data)
-
-
-def get_liked_reviews_by_user_and_restaurant(user, restaurant):
+def get_liked_reviews_by_user_and_tour(user, restaurant):
     liked_reviews = []
     for review in restaurant.review_set.all():
         like = review.like_set.filter(user=user).first()
