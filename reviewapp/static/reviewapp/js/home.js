@@ -18,12 +18,12 @@
 let tinydata = null;
 $(document).ready(function() {
     $("#category-btn").click(function() {
-        console.log('test1')
+        // console.log('test1')
         getRestaurants();
     });
-    console.log('test2')
+    // console.log('test2')
     function getRestaurants() {
-        console.log('test3')
+        // console.log('test3')
         var userInput = $("#user-input").val();
         console.log(userInput);
         // 构建请求数据对象
@@ -44,7 +44,7 @@ $(document).ready(function() {
                 $("#restaurants-list").empty();
                 // var responseData = JSON.parse(response);
                 var responseData = response;
-                console.log(response)
+                // console.log(response)
                 // 获取用户查询和推荐旅行的列表
                 var userQuery = responseData.user_query;
                 var recommendedTours = responseData.recommended_tours;
@@ -52,8 +52,8 @@ $(document).ready(function() {
                 // window.location.href = "/details/?response=" + encodeURIComponent(JSON.stringify(response));
                 tinydata = recommendedTours
                 // 在控制台打印结果，以便调试
-                console.log(userQuery);
-                console.log(recommendedTours);
+                // console.log(userQuery);
+                // console.log(recommendedTours);
 
                 // var resultElement = $("#result");
                 // resultElement.html("<p>User Query: " + userQuery + "</p>");
