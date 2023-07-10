@@ -1,0 +1,48 @@
+{% extends 'tourapp/base.html' %}
+{% block content %}
+
+<div id="category-banner" class="text-center" xmlns="http://www.w3.org/1999/html">
+    <div class="select-wrapper">
+        <input type="text" id="user-input" placeholder="Example: Munich">
+<!--        <button id="category-btn">Search</button>-->
+        <button type="submit" id="category-btn">Search</button>
+    </div>
+</div>
+<!--<div id="result"></div>-->
+<!--ERROR-->
+<!--<div id="none-found">-->
+<!--    <div class="alert alert-primary" role="alert">-->
+<!--        No tours found.-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--TOURS LIST-->
+<div id="tours-list-wrapper">
+    <div id="tours-list">
+
+    </div>
+</div>
+
+
+<!--SAMPLE RESTAURANT-->
+<div id="newTour" class="card tour-card shadow mb-4" style="display:none;" >
+    <a href="#">
+        <div class="tour-image">
+            <img class="card-img-top" src width="100%">
+        </div>
+        <div class="card-body">
+            <h4 class="card-title"><span class="tour-text"></span></h4>
+        </div>
+    </a>
+</div>
+
+<!--CSS & JS-->
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'tourapp/style/home.css' %}" />
+{% load static %}
+<script src="{% static 'tourapp/js/home.js' %}"> </script>
+
+<script>
+    getTours();
+</script>
+{% endblock %}

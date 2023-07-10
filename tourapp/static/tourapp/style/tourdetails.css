@@ -1,0 +1,62 @@
+
+h1 {
+    font-family: Pacifico, sans-serif;
+}
+
+.card{
+    border-radius: 20px;
+}
+
+.user-icon{
+    font-size: 2em;
+}
+
+.user-icon-small{
+    font-size: 1.5em;
+    text-align: right;
+    padding-right: 10px;
+}
+
+.date{
+    font-style: italic;
+    color:grey;
+}
+
+hr {
+    display: block; height: 1px;
+    border: 0; border-top: 3px solid #ddd;
+    margin: 1em 0; padding: 0; 
+}
+
+.user-bar{
+    display: table;
+}
+
+.user-icon-side{
+    display: table-cell;
+    vertical-align: middle;
+    padding-left: 10px;
+}
+
+.review-meta-data{
+    font-size: 0.7em;
+}
+
+.review-icon{
+    font-size: 1.2em;
+}
+
+.comment-reply-content{
+    background-color: #F2F3F5;
+    border-radius: 25px;
+    padding: 8px 15px 8px 15px;
+    display: inline-block;
+    margin-bottom: 0;
+}
+
+.comment-options{
+    padding: 0px 15px 0px 50px;
+    display: block;
+}
+
+

@@ -1,0 +1,165 @@
+{% extends 'tourapp/base.html' %}
+
+{% block content %}
+<!--<title>Tour Details: {{ tour_title }}</title>-->
+
+<head>
+    <title>Travel Website</title>
+
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    {% load static %}
+
+    <style>
+    /* CSS样式 */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f1f1f1;
+    }
+
+    .container {
+      /*display: flex;*/
+        width: 1200px;
+      flex-direction: column;
+      align-items: center;
+    }
+    .tour {
+        margin-bottom: 20px;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+        display: flex;
+        /*display: compact;*/
+        align-items: flex-start;
+    }
+
+    .tour img {
+        max-width: 400px;
+        height: 250px;
+        margin-right: 20px;
+        /*align-items: center;*/
+    }
+
+
+    .tour h2 {
+        color: #333;
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    .tour p {
+        color: #666;
+        margin-bottom: 10px;
+    }
+
+    .tour-info {
+        font-size: 16px;
+        color: #888;
+    }
+
+    .tour-info p {
+        margin-bottom: 5px;
+    }
+
+    .tour-info a {
+        color: #007bff;
+        text-decoration: none;
+    }
+    .image-container {
+    position: relative;
+    }
+
+    .map-container {
+        position: relative;
+        display: flex;
+        width: 100%;
+        height: 0;
+        padding-bottom: 75%; /* 设置地图容器的高度为宽度的百分比，可根据需要调整比例 */
+        z-index: 2;
+    }
+
+    .info-container {
+      margin-top: 20px;
+    }
+    .text-container {
+      width: 100%;
+      text-align: left;
+    }
+    #mymap {
+        /*position: absolute;*/
+        display: flex;
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 30%;
+        margin: 0;
+        padding: 0;
+    }
+
+    </style>
+</head>
+
+
+
+
+<body>
+
+<div class="container">
+    <h1 style="text-align: center;">{{ tour_title }}</h1>
+
+    <div class="tour">
+    <div class="image-container">
+      <img src="{{image_url}}" alt="Photo 1">
+    </div>
+<!--    <div class="content-container">-->
+        <div class="info-container">
+            <h2>{{ tour_title }}</h2>
+<!--                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor semper leo, in cursus massa varius et.</p>-->
+            <div class="tour-info">
+                <p><strong>Duration:</strong> {{tour_duration}}</p>
+                <p><strong>Length:</strong> {{tour_length}}</p>
+                <p><strong>Rating Condition:</strong> {{tour_rating_condition}}</p>
+                <p><strong>Rating Difficulty:</strong> {{tour_rating_difficulty}}</p>
+                <p><strong>Rating Landscape:</strong> {{tour_rating_landscape}}</p>
+                <p><strong>Top Label:</strong> {{tour_label_top}}</p>
+<!--                <p><strong>Starting Point:</strong> {{tour_starting_point_lon}} {{tour_starting_point_lat}}</p>-->
+<!--                <p><strong>Short Text:</strong> {{tour_short_text}}</p>-->
+<!--                <p><strong>Long Text:</strong> {{tour_long_text}}</p>-->
+                <p><strong>More Information:</strong> <a href= {{ tour_url }}>{{ tour_url }}</a></p>
+            </div>
+<!--        </div>-->
+<!--        <div id="mymap"></div>-->
+    </div>
+</div>
+
+<div class="tour">
+    <div class="text-container">
+      <p><strong>Short Text:</strong> {{tour_short_text}}</p>
+      <p><strong>Long Text:</strong> {{tour_long_text}}</p>
+    </div>
+  </div>
+    <div class="map-container">
+        <div id="mymap"></div>
+      </div>
+</div>
+
+<script src="{% static 'reviewapp/js/map.js' %}"> </script>
+<script>
+    createMap("{{ tour_starting_point_lat }}", "{{ tour_starting_point_lon }}");
+</script>
+</body>
+
+
+
+
+
+{% endblock content %}
+
+

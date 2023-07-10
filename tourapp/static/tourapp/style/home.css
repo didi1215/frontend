@@ -1,0 +1,101 @@
+#category-banner{
+    width: 100%;
+    /*width: 300px;*/
+    height:300px;
+    background-color: turquoise;
+    overflow: auto;
+    background-image: url('/static/tourapp/images/cat0.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    transition: background 0.4s ease;
+}
+#category-btn {
+  padding: 10px 20px;
+  /*border-color: #cccccc;*/
+  border-radius: 5px;
+  font-size: 16px;
+  width: 150px; /* 调整宽度的值，可以根据需要进行修改 */
+  background-color: rgba(0, 0, 0, 0.8); /* 设置按钮的背景颜色为绿色 */
+  color: rgb(23, 162, 184); /* 设置按钮的文本颜色为白色 */
+}
+.select-wrapper {
+    margin-top: 110px;
+    
+}
+#user-input {
+    background-color: rgba(0, 0, 0, 0.8);
+  padding: 10px;
+  border: 1px;
+  border-radius: 5px;
+  font-size: 16px;
+  width: 500px;
+  height:45px;
+    color:white;
+}
+#category-dropdown{
+    font-size: 30px;
+    border-radius: 50px;
+    padding: 15px 70px 15px 40px;
+    text-align-last:center;
+    border:none;
+    font-weight: bold;
+
+    -webkit-appearance: none;
+	-moz-appearance: none;
+	-ms-appearance: none;
+	 -o-appearance: none;
+        appearance: none;
+}
+
+.select-wrapper span {
+	font-family: FontAwesome;
+  	content: '\f107';
+    font-size: 28px;
+    position: relative;
+    left: -50px;
+  	color: turquoise;
+  	pointer-events: none;
+}
+
+.tour-card{
+    width: 300px;
+    height: 300px;
+    float: left;
+    margin: 20px;
+    border-radius: 30px;
+    overflow: hidden;
+}
+
+.tour-card:hover{
+    border: 5px solid white;
+}
+.tour-text{
+    color: #333;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+.pricing{
+    color: #4CAF50;
+}
+
+.rating{
+    color:orange;
+}
+
+.tour-image{
+    overflow: hidden; 
+    width: 300px; 
+    height:200px;
+}
+
+#tours-list{
+    display: inline-block;
+    overflow: hidden;
+}
+
+#tours-list-wrapper{
+    text-align: center; 
+    padding:30px; 
+    width:100%;
+}
