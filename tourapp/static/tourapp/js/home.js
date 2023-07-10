@@ -86,7 +86,7 @@ $(document).ready(function() {
                                 // 获取用户查询和推荐旅行的列表
                                 document.write(tinyresponseData);
                                 console.log(tinyresponseData);
-                                var img = tinyresponseData[img_url]
+                                // var img = tinyresponseData[img_url]
                             },
 
                         // window.location.href = "/tourapp/resto/details/"
