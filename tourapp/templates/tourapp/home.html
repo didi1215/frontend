@@ -19,14 +19,25 @@
 <!--TOURS LIST-->
 <div id="tours-list-wrapper">
     <div id="tours-list">
-
+        {% for tour in tours %}
+        <div id="newTour" class="card tour-card shadow mb-4" card_id={{forloop.counter0}} onclick="getDetails( '[{{tour}}]' )">
+            <a href="tour/{{forloop.counter0}}/detail/">
+                <div class="tour-image">
+                    <img class="card-img-top" src={{tour.image_url}} width="100%">
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title"><span class="tour-text">{{tour.tour_title}}</span></h4>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
     </div>
 </div>
 
 
 <!--SAMPLE RESTAURANT-->
 <div id="newTour" class="card tour-card shadow mb-4" style="display:none;" >
-    <a href="#">
+    <a href="/">
         <div class="tour-image">
             <img class="card-img-top" src width="100%">
         </div>
