@@ -72,8 +72,8 @@
 }
 .tour-text{
     color: #333;
-  font-size: 20px;
-  margin-bottom: 10px;
+    font-size: 20px;
+    margin-bottom: 10px;
 }
 .pricing{
     color: #4CAF50;
@@ -99,4 +99,11 @@
     padding:30px; 
     padding-left: 100px;
     width:100%;
+}
+
+.card-body {
+    height: 83px;
+    overflow: hidden;
+    display: inline-block;
+    text-overflow: ellipsis;
 }
