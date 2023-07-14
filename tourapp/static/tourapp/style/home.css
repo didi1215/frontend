@@ -63,6 +63,7 @@
 
 }
 .tour-text{
+<<<<<<< HEAD
     /*color: rgb(23, 162, 184);*/
     color: rgba(0, 0, 0, 0.8);
     /*color: white;*/
@@ -71,6 +72,18 @@
      word-wrap: break-word;
   margin-bottom: 10px;
      font-family: FontAwesome, sans-serif;
+=======
+    color: #333;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+.pricing{
+    color: #4CAF50;
+}
+
+.rating{
+    color:orange;
+>>>>>>> d9b22fe99abcf02375160146949661983b7c89af
 }
 
 .tour-image{
@@ -89,4 +102,11 @@
     padding:30px; 
     padding-left: 100px;
     width:100%;
+}
+
+.card-body {
+    height: 83px;
+    overflow: hidden;
+    display: inline-block;
+    text-overflow: ellipsis;
 }
