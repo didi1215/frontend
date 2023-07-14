@@ -8,30 +8,35 @@
         <button type="submit" id="category-btn">Search</button>
     </div>
 </div>
-<!--<div id="result"></div>-->
-<!--ERROR-->
-<!--<div id="none-found">-->
-<!--    <div class="alert alert-primary" role="alert">-->
-<!--        No tours found.-->
-<!--    </div>-->
-<!--</div>-->
+
 
 <!--TOURS LIST-->
 <div id="tours-list-wrapper">
     <div id="tours-list">
-
+        {% for tour in tours %}
+        <div id="newTour" class="card tour-card shadow mb-4" card_id={{forloop.counter0}} onclick="getDetails( '[{{tour}}]' )">
+            <a href="tour/{{forloop.counter0}}/detail/">
+                <div class="tour-image">
+                    <img class="card-img-top" src={{tour.image_url}} width="300px" height="200px" object-fit="cover">
+                </div>
+                <div class="card-body">
+                    <div class="card-title"><span class="tour-text">{{tour.tour_title}}</span></div>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
     </div>
 </div>
 
 
 <!--SAMPLE RESTAURANT-->
 <div id="newTour" class="card tour-card shadow mb-4" style="display:none;" >
-    <a href="#">
+    <a href="/">
         <div class="tour-image">
             <img class="card-img-top" src width="100%">
         </div>
         <div class="card-body">
-            <h4 class="card-title"><span class="tour-text"></span></h4>
+            <div class="card-title"><span class="tour-text"></span></div>
         </div>
     </a>
 </div>

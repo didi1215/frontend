@@ -1,4 +1,3 @@
-// 创建地图
 function createMap(tourLat, tourLon) {
     // console.log('------------------------')
     if (navigator.geolocation) {
@@ -6,34 +5,28 @@ function createMap(tourLat, tourLon) {
             var latitude = position.coords.latitude;
             var longitude = position.coords.longitude;
 
-            // 获取HTML模板中的经纬度值
-            // var tourStartLat = parseFloat("{{ tour_starting_point_lat }}");
-            // var tourStartLon = parseFloat("{{ tour_starting_point_lon }}");
-
-            var lineData = [{
-                type: 'scattermapbox',
-                mode: 'lines',
-                lon: [longitude, tourLon, null],
-                lat: [latitude, tourLat, null],
-                marker: {
-                    size: 14
+            var data = [
+                {
+                    type: 'scattermapbox',
+                    lat: [tourLat],
+                    lon: [tourLon],
+                    mode: 'markers',
+                    marker: {
+                        size: 14
+                    },
+                    text: ['Starting Point']
                 },
-                text: ['Current Location', 'Tour Starting Point']
-            }];
-            // console.log(lineData+'.....')
-            // var data = [
-                // lineData,
-                // {
-                //     type: 'scattermapbox',
-                //     lat: [tourLat],
-                //     lon: [tourLon],
-                //     mode: 'markers',
-                //     marker: {
-                //         size: 14
-                //     },
-                //     text: ['Starting Point']
-                // }
-            // ];
+                {
+                    type: 'scattermapbox',
+                    lat: [latitude],
+                    lon: [longitude],
+                    mode: 'markers',
+                    marker: {
+                        size: 14
+                    },
+                    text: ['Current Location']
+                }
+            ];
 
             var layout = {
                 autosize: true,
@@ -48,7 +41,7 @@ function createMap(tourLat, tourLon) {
                 }
             };
 
-            Plotly.newPlot('mymap', lineData, layout);
+            Plotly.newPlot('mymap', data, layout);
         });
     }
 }

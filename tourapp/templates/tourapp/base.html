@@ -40,15 +40,15 @@
                 <li class="nav-item"><a class="nav-link" href="{% url 'tourapp:home' %}">Home</a></li>
             </ul>
 
-            {% if user.is_authenticated %}
-            <span class="navbar-text" style="margin-right:20px">Hello, {{user.username}}!</span>
-            <a href="/accounts/logout"><button class="btn btn-info my-2 my-sm-0 login" style="font-weight: 500">Log
-                    out</button>
-            </a>
-            {% else %}
-            <a href="/accounts/login"><button class="btn btn-outline-info my-2 my-sm-0 login">Login</button>
-            </a>
-            {% endif %}
+<!--            {% if user.is_authenticated %}-->
+<!--            <span class="navbar-text" style="margin-right:20px">Hello, {{user.username}}!</span>-->
+<!--            <a href="/accounts/logout"><button class="btn btn-info my-2 my-sm-0 login" style="font-weight: 500">Log-->
+<!--                    out</button>-->
+<!--            </a>-->
+<!--            {% else %}-->
+<!--            <a href="/accounts/login"><button class="btn btn-outline-info my-2 my-sm-0 login">Login</button>-->
+<!--            </a>-->
+<!--            {% endif %}-->
         </nav>
         {% block content %}
         {% endblock %}

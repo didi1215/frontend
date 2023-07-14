@@ -1,62 +1,93 @@
 
-h1 {
-    font-family: Pacifico, sans-serif;
+/* CSS样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.card{
-    border-radius: 20px;
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f1f1f1;
 }
 
-.user-icon{
-    font-size: 2em;
+.container {
+  /*display: flex;*/
+    width: 1200px;
+  flex-direction: column;
+  align-items: center;
+}
+.tour {
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    display: flex;
+    /*display: compact;*/
+    align-items: flex-start;
 }
 
-.user-icon-small{
-    font-size: 1.5em;
-    text-align: right;
-    padding-right: 10px;
-}
-
-.date{
-    font-style: italic;
-    color:grey;
-}
-
-hr {
-    display: block; height: 1px;
-    border: 0; border-top: 3px solid #ddd;
-    margin: 1em 0; padding: 0; 
-}
-
-.user-bar{
-    display: table;
-}
-
-.user-icon-side{
-    display: table-cell;
-    vertical-align: middle;
-    padding-left: 10px;
-}
-
-.review-meta-data{
-    font-size: 0.7em;
-}
-
-.review-icon{
-    font-size: 1.2em;
-}
-
-.comment-reply-content{
-    background-color: #F2F3F5;
-    border-radius: 25px;
-    padding: 8px 15px 8px 15px;
-    display: inline-block;
-    margin-bottom: 0;
-}
-
-.comment-options{
-    padding: 0px 15px 0px 50px;
-    display: block;
+.tour img {
+    max-width: 400px;
+    height: 250px;
+    margin-right: 20px;
+    /*align-items: center;*/
 }
 
 
+.tour h2 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.tour p {
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.tour-info {
+    font-size: 16px;
+    color: #888;
+}
+
+.tour-info p {
+    margin-bottom: 5px;
+}
+
+.tour-info a {
+    color: #007bff;
+    text-decoration: none;
+}
+.image-container {
+position: relative;
+}
+
+.map-container {
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 0;
+    padding-bottom: 75%; /* 设置地图容器的高度为宽度的百分比，可根据需要调整比例 */
+    z-index: 2;
+}
+
+.info-container {
+  margin-top: 20px;
+}
+.text-container {
+  width: 100%;
+  text-align: left;
+}
+#mymap {
+    /*position: absolute;*/
+    display: flex;
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 30%;
+    margin: 0;
+    padding: 0;
+}
