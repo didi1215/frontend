@@ -4,34 +4,38 @@
     height:300px;
     background-color: turquoise;
     overflow: auto;
-    background-image: url('/static/tourapp/images/cat0.jpg');
+    background-image: url('/static/tourapp/images/cat6.jpg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     transition: background 0.4s ease;
 }
+
 #category-btn {
   padding: 10px 20px;
-  /*border-color: #cccccc;*/
   border-radius: 5px;
   font-size: 16px;
-  width: 150px; /* 调整宽度的值，可以根据需要进行修改 */
-  background-color: rgba(0, 0, 0, 0.8); /* 设置按钮的背景颜色为绿色 */
-  color: rgb(23, 162, 184); /* 设置按钮的文本颜色为白色 */
+  width: 150px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: rgb(23, 162, 184);
+    margin-top: 20px;
+    /*margin-left: 50px;*/
 }
 .select-wrapper {
     margin-top: 110px;
-    
+
 }
 #user-input {
-    background-color: rgba(0, 0, 0, 0.8);
-  padding: 10px;
-  border: 1px;
+    resize: vertical;
+  overflow: auto;
+   padding: 10px;
+  border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 16px;
   width: 500px;
-  height:45px;
-    color:white;
+  min-height: 20px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
 
@@ -56,7 +60,6 @@
     border-radius: 30px;
     overflow: hidden;
     background-color: #f1f1f1;
-    /*background-color: rgb(23, 162, 184);*/
 }
 
 .tour-card:hover{
@@ -65,26 +68,23 @@
 }
 .tour-text{
     height: 100%;
-    /*color: rgb(23, 162, 184);*/
     color: rgba(0, 0, 0, 0.8);
-    /*color: white;*/
     font-weight: bolder;
   font-size: 10px;
      word-wrap: break-word;
-  /*margin-bottom: 10px;*/
      font-family: FontAwesome, sans-serif;
     margin-top: 20px;
     text-align: center;
     display: block;
-    /*text-overflow: ellipsis;*/
-    /*overflow: hidden;*/
 }
 
 
 .tour-image{
     overflow: hidden;
+    object-fit: cover;
     width: 300px;
-    height:200px;
+    height: 200px;
+
 }
 
 #tours-list{
