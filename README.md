@@ -14,3 +14,8 @@ python manage.py runserver 0.0.0.0:8000
 http://127.0.0.1:8000/tourapp/
 ```
 ### homepage
+![homepage](tourapp/static/tourapp/images/homepage.jpg)
+### sample request
+![sample request](tourapp/static/tourapp/images/sample_request.jpg)
+### tour detail
+![tour detail](tourapp/static/tourapp/images/detail.png)
