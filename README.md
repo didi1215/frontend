@@ -12,7 +12,7 @@ make sure to run API on port 8080
 pip install -r requirements.txt
 ```
 ```
-python manage.py runserver 0.0.0.0:8000
+python manage.py runserver 0.0.0.0:8001
 ```
 ## 3. Open the web in your browser
 ```
