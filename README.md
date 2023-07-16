@@ -2,7 +2,9 @@
 Group 2
 ## 1. Configure the backend
 Setup and run backend service as stated on backend repo :
+
 [tour-recommender-backend](https://github.com/RecSys-SS-2023/tour-recommender-backend)
+
 make sure to run API on port 8080
 
 ## 2. Run the command
