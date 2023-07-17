@@ -18,7 +18,7 @@ $(document).ready(function() {
             userLocation = longitude + ',' + latitude;
             var payload = {
             sentence: userInput,
-            location: userLocation,
+            location: '',
             n: 50
         };
 
